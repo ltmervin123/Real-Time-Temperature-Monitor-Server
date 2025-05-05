@@ -1,0 +1,27 @@
+{
+  "name": "real-time-temperature-monitor-server",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"No test specified\" && exit 0",
+    "lint": "eslint .",
+    "build": "echo \"No build step\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ltmervin123/Real-Time-Temperature-Monitor-Server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ltmervin123/Real-Time-Temperature-Monitor-Server/issues"
+  },
+  "homepage": "https://github.com/ltmervin123/Real-Time-Temperature-Monitor-Server#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
