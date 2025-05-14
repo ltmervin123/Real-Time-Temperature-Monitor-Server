@@ -22,6 +22,11 @@
   "homepage": "https://github.com/ltmervin123/Real-Time-Temperature-Monitor-Server#readme",
   "description": "",
   "dependencies": {
-    "express": "^5.1.0"
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }
