@@ -12,5 +12,18 @@ export default class socketSetup {
     this.setupSocketEvents();
   }
 
-  setupSocketEvents() {}
+  setupSocketEvents() {
+    this.io.on("connection", (socket) => {
+      console.log("New client connected:", socket.id);
+
+      socket.on("disconnect", () => {
+        console.log("Client disconnected:", socket.id);
+      });
+    });
+  }
+
+  // Expose method to emit temperature updates
+  broadcastTemperature(temp) {
+    this.io.emit("temperature", temp);
+  }
 }

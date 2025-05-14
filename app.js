@@ -3,6 +3,8 @@ import express from "express";
 import cors from "cors";
 import socketSetup from "./src/sockets/socketSetup.js";
 import { createServer } from "http";
+import { SerialPort } from "serialport";
+import { ReadlineParser } from "@serialport/parser-readline";
 
 // CONSTANT
 const app = express();
@@ -30,6 +32,26 @@ const server = createServer(app);
 
 // SOCKET SETUP
 const socket = new socketSetup(server, corsOptions);
+
+// SERIAL CONNECTION SET UP
+const serial = new SerialPort({
+  path: "COM3",
+  baudRate: 9600,
+});
+
+const parser = serial.pipe(new ReadlineParser({ delimiter: "\n" }));
+
+parser.on("data", (line) => {
+  const temperature = parseFloat(line.trim()).toFixed(1);
+  if (!isNaN(temperature)) {
+    console.log(`TEMP: ${temperature}`);
+    socket.broadcastTemperature(temperature);
+  }
+});
+
+serial.on("error", (err) => {
+  console.error("Serial Port Error:", err.message);
+});
 
 // SERVER LOGIC
 const startServer = async () => {
