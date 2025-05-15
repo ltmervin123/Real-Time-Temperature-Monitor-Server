@@ -53,6 +53,13 @@ serial.on("error", (err) => {
   console.error("Serial Port Error:", err.message);
 });
 
+// MOCK TEMP
+const generateMockTemp = () => {
+  const MIN = 20;
+  const MAX = 35;
+  return Math.random() * (MAX - MIN) + MIN;
+};
+
 // SERVER LOGIC
 const startServer = async () => {
   try {
@@ -61,6 +68,13 @@ const startServer = async () => {
       console.log(`Frontend is available at `, allowOrigin);
       console.log("Socket.IO server is ready");
     });
+
+    // EMIT MOCK TEMP EVERY 5 SECONDS
+    // setInterval(() => {
+    //   const temperature = generateMockTemp().toFixed(1);
+    //   console.log("MOCK TEMP: ", temperature);
+    //   socket.broadcastTemperature(temperature);
+    // }, 1000);
   } catch (error) {
     console.log("Error starting server", error.message);
   }
